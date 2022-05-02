@@ -19,7 +19,7 @@ public class Panel extends JFrame{
         GridLayout gird = new GridLayout(9,8);
         k.setLayout(gird);
         k.setBackground(Color.BLACK);
-        frame.setPreferredSize(new Dimension(350, 380));
+        frame.setPreferredSize(new Dimension(275, 330));
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -34,7 +34,7 @@ public class Panel extends JFrame{
                 {0,2,1,6,2,2,4,0},
                 {0,1,1,1,4,1,1,0},
                 {0,0,0,0,0,0,0,0}};
-        //this.field = field;
+        this.field = field;
         //Crates Value = 2;
         //goals value = 4
         //character value = 3;

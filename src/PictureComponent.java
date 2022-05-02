@@ -39,28 +39,28 @@ public class PictureComponent extends JComponent{
         }
 
         Graphics2D G2 = (Graphics2D) g;
-        G2.drawImage(Image, null, xpos, ypos);
+        G2.drawImage(Image, null, 0, 0);
     }
 
-    public void UpdateField(int[][] field, int xpos, int ypos){
+    public void UpdateField(int[][] field, int ypos, int xpos){
         this.xpos = xpos;
         this.ypos = ypos;
-        if(field[xpos][ypos] == 0){
+        if(field[ypos][xpos] == 0){
             Paintit = Wall;
         }
-         if(field[xpos][ypos] == 1){
+         if(field[ypos][xpos] == 1){
             Paintit = Path;
         }
-        else if(field[xpos][ypos] == 2){
+        else if(field[ypos][xpos] == 2){
             Paintit = crate;
         }
-        else if(field[xpos][ypos] == 3 || field[xpos][ypos] == 7){
+        else if(field[ypos][xpos] == 3 || field[ypos][xpos] == 7){
             Paintit = Character;
         }
-        else if(field[xpos][ypos] == 4){
+        else if(field[ypos][xpos] == 4){
             Paintit = Goal;
         }
-        else if(field[xpos][ypos] == 6){
+        else if(field[ypos][xpos] == 6){
             Paintit = MarkedCrate;
         }
         repaint();
