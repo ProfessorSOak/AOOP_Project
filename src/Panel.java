@@ -15,6 +15,8 @@ public class Panel extends JFrame{
 
     public void Level1(){
         JFrame frame = new JFrame();
+        JPanel k = new JPanel();
+        PictureComponent first = new PictureComponent();
         GridLayout gird = new GridLayout(9,8);
         k.setLayout(gird);
         k.setBackground(Color.BLACK);

@@ -32,10 +32,14 @@ public class PictureComponent extends JComponent{
         }
 
         BufferedImage Image = null;
+        try {
+            Image = ImageIO.read(Paintit);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Graphics2D G2 = (Graphics2D) g;
         G2.drawImage(Image, null, xpos, ypos);
-
     }
 
     public void UpdateField(int[][] field, int xpos, int ypos){
@@ -44,7 +48,7 @@ public class PictureComponent extends JComponent{
         if(field[xpos][ypos] == 0){
             Paintit = Wall;
         }
-        else if(field[xpos][ypos] == 1){
+         if(field[xpos][ypos] == 1){
             Paintit = Path;
         }
         else if(field[xpos][ypos] == 2){
