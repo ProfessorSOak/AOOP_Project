@@ -16,7 +16,13 @@ public class Panel extends JFrame{
     public void Level1(){
         JFrame frame = new JFrame();
         GridLayout gird = new GridLayout(9,8);
-        frame.setLayout(gird);
+        k.setLayout(gird);
+        k.setBackground(Color.BLACK);
+        frame.setPreferredSize(new Dimension(1000, 1000));
+        frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
         int[][] field = new int[][]{
                 {0,0,0,0,0,0,0,0},
                 {0,0,0,1,1,1,0,0},
@@ -34,6 +40,18 @@ public class Panel extends JFrame{
         CharXpos = 2;
         CharYpos = 2;
         //tile values = 1;
+        for(int i = 0; i<9; i++){
+
+            for(int j = 0; j<8; j++){
+
+                first.UpdateField(field, i, j);
+                k.add(first);
+
+            }
+        }
+        frame.add(k,BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
     }
 
 }
