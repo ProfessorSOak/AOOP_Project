@@ -6,10 +6,14 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 public abstract class Sokoban extends JFrame implements KeyListener {
 
-    int CharXpos;
-    int CharYpos;
-    int[][] field;
-    int[][] Start;
+    private int CharXpos;
+    private int CharYpos;
+    private int[][] field;
+    private int[][] Start;
+    private int CharStartX;
+    private int CharStartY;
+
+    //Create getters and setters for later use.
 
     public abstract void UpPressed();
     public abstract void DownPressed();
@@ -50,6 +54,8 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         //character value = 3;
         CharXpos = 2;
         CharYpos = 2;
+        CharStartX = CharXpos;
+        CharStartY = CharYpos;
         //tile values = 1;
         for(int i = 0; i<9; i++){
 
