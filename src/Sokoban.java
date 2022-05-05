@@ -26,6 +26,32 @@ public abstract class Sokoban extends JFrame implements KeyListener {
 
     }
 
+    public void SetCharPosX(int pos){
+        CharXpos = pos;
+    }
+
+    public void SetCharPosY(int pos){
+        CharYpos = pos;
+    }
+
+    public int GetCharPosX(){
+        return CharXpos;
+    }
+
+    public int GetCharPosY(){
+        return CharYpos;
+    }
+
+    public void SetBoard(int[][] Board){
+        field = Board;
+    }
+
+    public int[][] GetBoard(){
+        return field;
+    }
+
+
+
     public void Level1(){
         JFrame frame = new JFrame();
         JPanel k = new JPanel();
@@ -131,6 +157,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
                 break;
             }
         }
+
     }
 
     @Override
