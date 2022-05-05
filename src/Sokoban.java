@@ -120,7 +120,6 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         frame.pack();
         frame.setVisible(true);
 
-
     }
 
     @Override

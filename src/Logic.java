@@ -5,21 +5,25 @@ public class Logic extends Sokoban {
 
     @Override
     public void UpPressed() {
+        CheckUp();
         System.out.println("TestUP");
     }
 
     @Override
     public void DownPressed() {
+        CheckDown();
         System.out.println("TestDOWN");
     }
 
     @Override
     public void LeftPressed(){
+        CheckLeft();
         System.out.println("TestLEFT");
     }
 
     @Override
     public void RightPressed(){
+        CheckRight();
         System.out.println("TestRIGHT");
     }
 
