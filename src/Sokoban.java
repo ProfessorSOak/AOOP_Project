@@ -156,7 +156,14 @@ public abstract class Sokoban extends JFrame implements KeyListener {
                 break;
             }
         }
-
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += field[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
     }
 
     @Override
