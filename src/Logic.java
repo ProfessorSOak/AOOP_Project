@@ -32,7 +32,7 @@ public class Logic extends Sokoban {
         System.out.println("TestRESET");
     }
 
-    public void CheckUp(){
+    public void CheckLeft(){
         int checkX = GetCharPosX();
         int checkY = GetCharPosY();
         int[][] Board = GetBoard();
@@ -103,7 +103,7 @@ public class Logic extends Sokoban {
             }
         }
     }
-    public void CheckDown(){
+    public void CheckRight(){
         int checkX = GetCharPosX();
         int checkY = GetCharPosY();
         int[][] Board = GetBoard();
@@ -179,7 +179,7 @@ public class Logic extends Sokoban {
         }
     }
 
-    public void CheckLeft(){
+    public void CheckUp(){
         int checkX = GetCharPosX();
         int checkY = GetCharPosY();
         int[][] Board = GetBoard();
@@ -255,7 +255,7 @@ public class Logic extends Sokoban {
         }
     }
 
-    public void CheckRight(){
+    public void CheckDown(){
         int checkX = GetCharPosX();
         int checkY = GetCharPosY();
         int[][] Board = GetBoard();
@@ -330,5 +330,4 @@ public class Logic extends Sokoban {
             SetBoard(Board);
         }
     }
-
 }

@@ -49,9 +49,6 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     public int[][] GetBoard(){
         return field;
     }
-
-
-
     public void Level1(){
         JFrame frame = new JFrame();
         JPanel k = new JPanel();
@@ -140,6 +137,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
                 System.out.println("UP");
                 break;
             }
+
             case KeyEvent.VK_DOWN: {
                 DownPressed();
                 System.out.println("DOWN");
