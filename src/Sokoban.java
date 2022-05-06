@@ -12,6 +12,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     private int[][] Start;
     private int CharStartX;
     private int CharStartY;
+    JPanel k = new JPanel();
 
     //Create getters and setters for later use.
 
@@ -46,12 +47,16 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         field = Board;
     }
 
+    /*public JPanel GetPanel(){
+        return k;
+    }*/
+
     public int[][] GetBoard(){
         return field;
     }
     public void Level1(){
         JFrame frame = new JFrame();
-        JPanel k = new JPanel();
+
         GridLayout gird = new GridLayout(9,8);
         k.setLayout(gird);
         k.setBackground(Color.BLACK);
@@ -84,33 +89,10 @@ public abstract class Sokoban extends JFrame implements KeyListener {
 
             for(int j = 0; j<8; j++){
                 PictureComponent first = new PictureComponent();
-                //System.out.println("hej");
                 first.UpdateField(field, i, j);
                 k.add(first);
             }
         }
-
-        /*KeyListener test = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_SPACE: {
-                        System.out.println("k");
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        };*/
 
         frame.addKeyListener(this);
         frame.add(k,BorderLayout.CENTER);
@@ -126,6 +108,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        PictureComponent test = new PictureComponent();
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE: {
                 ResetPressed();
@@ -151,6 +134,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
             case KeyEvent.VK_RIGHT: {
                 RightPressed();
                 System.out.println("RIGHT");
+                frame.a
                 break;
             }
         }
