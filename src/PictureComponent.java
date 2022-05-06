@@ -15,6 +15,7 @@ public class PictureComponent extends JComponent{
     File Paintit;
     int xpos;
     int ypos;
+    File[][] Board;
 
     public PictureComponent(){
         super();
@@ -27,23 +28,33 @@ public class PictureComponent extends JComponent{
     }
 
     public void paintComponent(Graphics g){
-        if(Paintit == null){
+        /*if(Paintit == null){
             return;
-        }
+        }*/
+        for(int i = 0; i<Board[0].length; i++) {
+            for (int j = 0; j < Board.length; j++) {
+                //first = new PictureComponent();
 
-        BufferedImage Image = null;
-        try {
-            Image = ImageIO.read(Paintit);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                //k.add(first);
+                Paintit = Board[j][i];
 
-        Graphics2D G2 = (Graphics2D) g;
-        G2.drawImage(Image, null, 0, 0);
+                BufferedImage Image = null;
+                try {
+                    Image = ImageIO.read(Paintit);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Graphics2D G2 = (Graphics2D) g;
+                G2.drawImage(Image, null, 32 * i, 32 * j);
+            }
+        }
     }
 
-    public void UpdateField(int[][] field, int ypos, int xpos){
+    public void UpdateField(File[][] Board){
         this.xpos = xpos;
+        this.ypos = ypos;
+        /*this.xpos = xpos;
         this.ypos = ypos;
         if(field[ypos][xpos] == 0){
             Paintit = Wall;
@@ -62,7 +73,8 @@ public class PictureComponent extends JComponent{
         }
         else if(field[ypos][xpos] == 6){
             Paintit = MarkedCrate;
-        }
+        }*/
+        this.Board = Board;
         repaint();
     }
 

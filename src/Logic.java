@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 
 public class Logic extends Sokoban {
@@ -31,6 +32,26 @@ public class Logic extends Sokoban {
     public void ResetPressed(){
         System.out.println("TestRESET");
     }
+
+    @Override
+    public void UpdateBoard(File[][] Board, PictureComponent k) {
+        //PictureComponent Update = new PictureComponent();
+        for(int i = 0; i<Board.length; i++){
+            for(int j = 0; j<Board[0].length;j++){
+                //Update = new PictureComponent();
+                k.UpdateField(Board);
+                //k.remove(Board[0].length*i+j);
+                //k.add(Update, Board[0].length*i+j);
+            }
+        }
+    }
+
+   /* @Override
+    public JComponent createMainComponent() {
+        PictureComponent test = new PictureComponent();
+        return test;
+    }*/
+
 
     /*public void CheckLeft(){
         int checkX = GetCharPosX();

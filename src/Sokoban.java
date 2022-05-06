@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import javax.swing.*;
 public abstract class Sokoban extends JFrame implements KeyListener {
 
@@ -12,7 +13,10 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     private int[][] Start;
     private int CharStartX;
     private int CharStartY;
-    JPanel k = new JPanel();
+    private File[][] PicBoard;
+    private PictureComponent k = new PictureComponent();
+    //PictureComponent first = new PictureComponent();
+
 
     //Create getters and setters for later use.
 
@@ -21,6 +25,8 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     public abstract void LeftPressed();
     public abstract void RightPressed();
     public abstract void ResetPressed();
+    public abstract void UpdateBoard(File[][] Board, PictureComponent k);
+    //public abstract JComponent createMainComponent();
 
     public Sokoban(){
         Level1();
@@ -57,10 +63,10 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     public void Level1(){
         JFrame frame = new JFrame();
 
-        GridLayout gird = new GridLayout(9,8);
-        k.setLayout(gird);
-        k.setBackground(Color.BLACK);
-        frame.setPreferredSize(new Dimension(275, 330));
+        //GridLayout gird = new GridLayout(9,8);
+        //k.setLayout(new BorderLayout());
+        //k.setBackground(Color.BLACK);
+        frame.setPreferredSize(new Dimension(500, 500));
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -75,8 +81,11 @@ public abstract class Sokoban extends JFrame implements KeyListener {
                 {0,2,1,6,2,2,4,0},
                 {0,1,1,1,4,1,1,0},
                 {0,0,0,0,0,0,0,0}};
+        int tester[][] = {{4, 2}};
         this.field = field;
+        //JComponent Painter = createMainComponent();
         Start = field;
+        PicBoard = k.SetPictureBoard(field);
         //Crates Value = 2;
         //goals value = 4
         //character value = 3;
@@ -84,15 +93,9 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         CharYpos = 2;
         CharStartX = CharXpos;
         CharStartY = CharYpos;
+        k.UpdateField(PicBoard);
         //tile values = 1;
-        for(int i = 0; i<9; i++){
 
-            for(int j = 0; j<8; j++){
-                PictureComponent first = new PictureComponent();
-                first.UpdateField(field, i, j);
-                k.add(first);
-            }
-        }
 
         frame.addKeyListener(this);
         frame.add(k,BorderLayout.CENTER);
@@ -117,22 +120,31 @@ public abstract class Sokoban extends JFrame implements KeyListener {
             }
             case KeyEvent.VK_UP: {
                 UpPressed();
+                PicBoard = k.SetPictureBoard(field);
+                UpdateBoard(PicBoard, k);
                 System.out.println("UP");
                 break;
             }
 
             case KeyEvent.VK_DOWN: {
                 DownPressed();
+                PicBoard = k.SetPictureBoard(field);
+                UpdateBoard(PicBoard, k);
                 System.out.println("DOWN");
                 break;
             }
             case KeyEvent.VK_LEFT: {
                 LeftPressed();
+                PicBoard = k.SetPictureBoard(field);
+                UpdateBoard(PicBoard, k);
                 System.out.println("LEFT");
                 break;
             }
             case KeyEvent.VK_RIGHT: {
                 RightPressed();
+                PicBoard = k.SetPictureBoard(field);
+                UpdateBoard(PicBoard, k);
+
                 System.out.println("RIGHT");
                 break;
             }
