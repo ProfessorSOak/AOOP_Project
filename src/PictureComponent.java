@@ -78,4 +78,30 @@ public class PictureComponent extends JComponent{
         repaint();
     }
 
+    public File[][] SetPictureBoard(int[][] field){
+        File[][] ret = new File[field.length][field[0].length];
+        for(int i = 0; i<field.length; i++){
+            for(int j = 0; j<field[0].length;j++){
+                if(field[i][j] == 0){
+                    ret[i][j] = Wall;
+                }
+                if(field[i][j] == 1){
+                    ret[i][j] = Path;
+                }
+                else if(field[i][j] == 2){
+                    ret[i][j] = crate;
+                }
+                else if(field[i][j] == 3 || field[i][j] == 7){
+                    ret[i][j] = Character;
+                }
+                else if(field[i][j] == 4){
+                    ret[i][j] = Goal;
+                }
+                else if(field[i][j] == 6){
+                    ret[i][j] = MarkedCrate;
+                }
+            }
+        }
+        return ret;
+    }
 }

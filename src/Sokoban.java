@@ -162,7 +162,6 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
-
     }
     public static void main(String[] args) {
         Sokoban test = new Logic();
