@@ -134,7 +134,6 @@ public abstract class Sokoban extends JFrame implements KeyListener {
             case KeyEvent.VK_RIGHT: {
                 RightPressed();
                 System.out.println("RIGHT");
-                frame.a
                 break;
             }
         }
