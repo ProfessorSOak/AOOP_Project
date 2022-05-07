@@ -25,7 +25,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     public abstract void LeftPressed();
     public abstract void RightPressed();
     public abstract void ResetPressed();
-    public abstract void UpdateBoard(File[][] Board, PictureComponent k);
+    //public abstract void UpdateBoard(File[][] Board, PictureComponent k);
     //public abstract JComponent createMainComponent();
 
     public Sokoban(){
@@ -51,6 +51,11 @@ public abstract class Sokoban extends JFrame implements KeyListener {
 
     public void SetBoard(int[][] Board){
         field = Board;
+    }
+
+    public void SetPicBoard(){
+        PicBoard = k.SetPictureBoard(Start);
+        k.UpdateField(PicBoard);
     }
 
     /*public JPanel GetPanel(){
@@ -81,7 +86,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
                 {0,2,1,6,2,2,4,0},
                 {0,1,1,1,4,1,1,0},
                 {0,0,0,0,0,0,0,0}};
-        int tester[][] = {{4, 2}};
+        //int tester[][] = {{4, 2}};
         this.field = field;
         //JComponent Painter = createMainComponent();
         Start = field;
@@ -115,13 +120,15 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE: {
                 ResetPressed();
+
                 System.out.println("RESET");
                 break;
             }
             case KeyEvent.VK_UP: {
                 UpPressed();
                 PicBoard = k.SetPictureBoard(field);
-                UpdateBoard(PicBoard, k);
+                k.UpdateField(PicBoard);
+                //UpdateBoard(PicBoard, k);
                 System.out.println("UP");
                 break;
             }
@@ -129,21 +136,24 @@ public abstract class Sokoban extends JFrame implements KeyListener {
             case KeyEvent.VK_DOWN: {
                 DownPressed();
                 PicBoard = k.SetPictureBoard(field);
-                UpdateBoard(PicBoard, k);
+                k.UpdateField(PicBoard);
+                //UpdateBoard(PicBoard, k);
                 System.out.println("DOWN");
                 break;
             }
             case KeyEvent.VK_LEFT: {
                 LeftPressed();
                 PicBoard = k.SetPictureBoard(field);
-                UpdateBoard(PicBoard, k);
+                k.UpdateField(PicBoard);
+                //UpdateBoard(PicBoard, k);
                 System.out.println("LEFT");
                 break;
             }
             case KeyEvent.VK_RIGHT: {
                 RightPressed();
                 PicBoard = k.SetPictureBoard(field);
-                UpdateBoard(PicBoard, k);
+                k.UpdateField(PicBoard);
+                //UpdateBoard(PicBoard, k);
 
                 System.out.println("RIGHT");
                 break;

@@ -13,8 +13,8 @@ public class PictureComponent extends JComponent{
     File Wall;
     File Path;
     File Paintit;
-    int xpos;
-    int ypos;
+    //int xpos;
+    //int ypos;
     File[][] Board;
 
     public PictureComponent(){
@@ -52,8 +52,8 @@ public class PictureComponent extends JComponent{
     }
 
     public void UpdateField(File[][] Board){
-        this.xpos = xpos;
-        this.ypos = ypos;
+        //this.xpos = xpos;
+        //this.ypos = ypos;
         /*this.xpos = xpos;
         this.ypos = ypos;
         if(field[ypos][xpos] == 0){

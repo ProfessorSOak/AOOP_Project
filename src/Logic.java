@@ -30,10 +30,14 @@ public class Logic extends Sokoban {
 
     @Override
     public void ResetPressed(){
+        /*SetPicBoard();
+        SetCharPosY(x);
+        SetCharPosY(y);*/
+
         System.out.println("TestRESET");
     }
 
-    @Override
+    /*@Override
     public void UpdateBoard(File[][] Board, PictureComponent k) {
         //PictureComponent Update = new PictureComponent();
         for(int i = 0; i<Board.length; i++){
@@ -44,7 +48,7 @@ public class Logic extends Sokoban {
                 //k.add(Update, Board[0].length*i+j);
             }
         }
-    }
+    }*/
 
    /* @Override
     public JComponent createMainComponent() {
