@@ -1,8 +1,8 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
+//import java.awt.event.KeyEvent;
+//import java.awt.event.KeyListener;
 import java.io.File;
 import javax.swing.*;
 public abstract class Sokoban extends JFrame{
@@ -54,10 +54,10 @@ public abstract class Sokoban extends JFrame{
         field = Board;
     }
 
-    public void SetPicBoard(){
+    /*public void SetPicBoard(){
         PicBoard = k.SetPictureBoard(Start);
         k.UpdateField(PicBoard);
-    }
+    }*/
 
     /*public JPanel GetPanel(){
         return k;
@@ -187,7 +187,7 @@ public abstract class Sokoban extends JFrame{
 
     }*/
     public static void main(String[] args) {
-        Sokoban test = new Logic();
-        ControllerStrategy m = new ControllerStrategy(test);
+        Sokoban Game = new Logic();
+        new ControllerStrategy(Game);
     }
 }
