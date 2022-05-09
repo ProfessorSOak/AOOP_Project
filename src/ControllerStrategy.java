@@ -30,25 +30,25 @@ public class ControllerStrategy implements KeyListener {
                 m.UpPressed();
                 //UpdateBoard(PicBoard, k);
                 System.out.println("UP");
-                break;
+                //break;
             }
             case KeyEvent.VK_DOWN -> {
                 m.DownPressed();
                 //UpdateBoard(PicBoard, k);
                 System.out.println("DOWN");
-                break;
+                //break;
             }
             case KeyEvent.VK_LEFT -> {
                 m.LeftPressed();
                 //UpdateBoard(PicBoard, k);
                 System.out.println("LEFT");
-                break;
+                //break;
             }
             case KeyEvent.VK_RIGHT -> {
                 m.RightPressed();
                 //UpdateBoard(PicBoard, k);
                 System.out.println("RIGHT");
-                break;
+                //break;
             }
         }
     }
