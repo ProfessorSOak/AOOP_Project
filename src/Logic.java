@@ -1,8 +1,13 @@
-import javax.swing.*;
+//import javax.swing.*;
+//import java.io.File;
+
 import java.io.File;
 
 public class Logic extends Sokoban {
     //private PictureComponent first = new PictureComponent();
+    File[][] Board = GetBoard();
+    int[][] field = GetField();
+    PictureComponent k = GetComponent();
 
     @Override
     public void UpPressed() {
@@ -13,19 +18,51 @@ public class Logic extends Sokoban {
     @Override
     public void DownPressed() {
         Check(GetCharPosX(), GetCharPosY(),1,0,2,0);
+        /*File[][] Board = GetBoard();
+        int[][] field = GetField();*/
+        Board = k.SetPictureBoard(GetField());
+        k.UpdateField(Board);
         System.out.println("TestDOWN");
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += field[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
     }
 
     @Override
     public void LeftPressed(){
         Check(GetCharPosX(), GetCharPosY(),0,-1,0,-2);
+        /*File[][] Board = GetBoard();
+        int[][] field = GetField();*/
+        Board = k.SetPictureBoard(GetField());
+        k.UpdateField(Board);
         System.out.println("TestLEFT");
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += field[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
     }
 
     @Override
     public void RightPressed(){
         Check(GetCharPosX(), GetCharPosY(),0,1,0,2);
         System.out.println("TestRIGHT");
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += field[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
     }
 
     @Override
@@ -359,7 +396,7 @@ public class Logic extends Sokoban {
     public void Check(int checkX, int checkY, int x1, int y1, int x2, int y2){
         //int checkX = GetCharPosX();
         //int checkY = GetCharPosY();
-        int[][] Board = GetBoard();
+        int[][] Board = GetField();
         if(Board[checkX+x1][checkY+y1] == 0){
             return;
         }

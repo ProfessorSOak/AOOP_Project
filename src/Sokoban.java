@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import javax.swing.*;
-public abstract class Sokoban extends JFrame implements KeyListener {
+public abstract class Sokoban extends JFrame{
 
     private int CharXpos;
     private int CharYpos;
@@ -102,7 +102,7 @@ public abstract class Sokoban extends JFrame implements KeyListener {
         //tile values = 1;
 
 
-        frame.addKeyListener(this);
+        //frame.addKeyListener(this);
         frame.add(k,BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
@@ -172,8 +172,9 @@ public abstract class Sokoban extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
+    }*/
     public static void main(String[] args) {
         Sokoban test = new Logic();
+        ControllerStrategy m = new ControllerStrategy(test);
     }
 }
