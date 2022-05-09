@@ -4,6 +4,7 @@ import java.awt.*;
 //import java.awt.event.KeyEvent;
 //import java.awt.event.KeyListener;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 public abstract class Sokoban extends JFrame{
 
@@ -17,6 +18,7 @@ public abstract class Sokoban extends JFrame{
     private PictureComponent k = new PictureComponent();
     //PictureComponent first = new PictureComponent();
     private JFrame frame = new JFrame();
+    //private List<BoardObserver> observers = new ArrayList<BoardObserver>();
 
 
     //Create getters and setters for later use.

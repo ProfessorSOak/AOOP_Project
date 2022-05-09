@@ -3,7 +3,7 @@
 
 import java.io.File;
 
-public class Logic extends Sokoban {
+public class Logic extends Sokoban implements BoardObserver {
     //private PictureComponent first = new PictureComponent();
     File[][] Board = GetBoard();
     int[][] field = GetField();
@@ -489,4 +489,22 @@ public class Logic extends Sokoban {
             SetBoard(Board);
         }
     }
-}
+
+    @Override
+    public void UpdateBoard(int[][] field, String update) {
+        if(update.equals("Cleared Game")){
+            System.out.println(update + "\nFinal Board:");
+        }
+        else {
+            System.out.println("Moved: " + update + "\nCurrent Board");
+        }
+        String Board = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                Board += field[i][j] + ", ";
+            }
+            Board += "\n";
+        }
+        System.out.println(Board);
+        }
+    }
