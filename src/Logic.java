@@ -12,6 +12,17 @@ public class Logic extends Sokoban {
     @Override
     public void UpPressed() {
         Check(GetCharPosX(), GetCharPosY(), -1,0,-2,0);
+
+        Board = k.SetPictureBoard(GetField());
+        k.UpdateField(Board);
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += field[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
         System.out.println("TestUP");
     }
 
@@ -54,6 +65,10 @@ public class Logic extends Sokoban {
     @Override
     public void RightPressed(){
         Check(GetCharPosX(), GetCharPosY(),0,1,0,2);
+        /*File[][] Board = GetBoard();
+        int[][] field = GetField();*/
+        Board = k.SetPictureBoard(GetField());
+        k.UpdateField(Board);
         System.out.println("TestRIGHT");
         String temp = "";
         for(int i = 0; i<9; i++){

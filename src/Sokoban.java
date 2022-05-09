@@ -16,6 +16,7 @@ public abstract class Sokoban extends JFrame{
     private File[][] PicBoard;
     private PictureComponent k = new PictureComponent();
     //PictureComponent first = new PictureComponent();
+    private JFrame frame = new JFrame();
 
 
     //Create getters and setters for later use.
@@ -62,11 +63,24 @@ public abstract class Sokoban extends JFrame{
         return k;
     }*/
 
-    public int[][] GetBoard(){
+    public int[][] GetField(){
         return field;
     }
+
+    public File[][] GetBoard(){
+        return PicBoard;
+    }
+
+    public PictureComponent GetComponent() {
+        return k;
+    }
+
+    public JFrame getFrame(){
+        return frame;
+    }
+
     public void Level1(){
-        JFrame frame = new JFrame();
+
 
         //GridLayout gird = new GridLayout(9,8);
         //k.setLayout(new BorderLayout());
@@ -108,7 +122,7 @@ public abstract class Sokoban extends JFrame{
         frame.setVisible(true);
 
     }
-
+/*
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -154,7 +168,6 @@ public abstract class Sokoban extends JFrame{
                 PicBoard = k.SetPictureBoard(field);
                 k.UpdateField(PicBoard);
                 //UpdateBoard(PicBoard, k);
-
                 System.out.println("RIGHT");
                 break;
             }
