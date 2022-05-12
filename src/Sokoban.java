@@ -28,6 +28,7 @@ public abstract class Sokoban extends JFrame{
     public abstract void LeftPressed();
     public abstract void RightPressed();
     public abstract void ResetPressed();
+    //public abstract boolean GetWinCondition();
     //public abstract void UpdateBoard(File[][] Board, PictureComponent k);
     //public abstract JComponent createMainComponent();
 
@@ -79,6 +80,18 @@ public abstract class Sokoban extends JFrame{
 
     public JFrame getFrame(){
         return frame;
+    }
+
+    public int getStartX(){
+        return CharStartX;
+    }
+
+    public int getStartY(){
+        return CharStartY;
+    }
+
+    public int[][] GetStartField(){
+        return Start;
     }
 
     public void Level1(){
@@ -191,5 +204,21 @@ public abstract class Sokoban extends JFrame{
     public static void main(String[] args) {
         Sokoban Game = new Logic();
         new ControllerStrategy(Game);
+
+        /*Logic logic = new Logic();
+        ObserverCollection test1 = new ObserverCollection();
+        test1.addSignalObserver((field1, update) ->{
+
+        });*/
+
+
+        /*test1.addSignalObserver(new BoardObserver() {
+            @Override
+            public void UpdateBoard(int[][] field, String update) {
+
+            }
+        });
+        test1.addSignalObserver(value ->{
+            field, "Still"});*/
     }
 }

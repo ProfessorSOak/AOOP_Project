@@ -7,33 +7,51 @@ public class Logic extends Sokoban implements BoardObserver {
     //private PictureComponent first = new PictureComponent();
     File[][] Board = GetBoard();
     int[][] field = GetField();
+    Boolean Win = false;
     PictureComponent k = GetComponent();
+    ObserverCollection OC = new ObserverCollection();
 
     @Override
     public void UpPressed() {
+        if(Win) {
+            return;
+        }
         Check(GetCharPosX(), GetCharPosY(), -1,0,-2,0);
 
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        String temp = "";
+        /*String temp = "";
         for(int i = 0; i<9; i++){
             for(int j = 0; j<8; j++){
                 temp += field[i][j] + ", ";
             }
             temp += "\n";
+        }*/
+        OC.NotifyObservers(field, "Up");
+        WinCondition(field);
+        if(Win == true){
+            OC.NotifyObservers(field,"Cleared Game" );
         }
-        System.out.println(temp);
-        System.out.println("TestUP");
+        //System.out.println(temp);
+        //System.out.println("TestUP");
     }
 
     @Override
     public void DownPressed() {
+        if(Win){
+            return;
+        }
         Check(GetCharPosX(), GetCharPosY(),1,0,2,0);
         /*File[][] Board = GetBoard();
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        System.out.println("TestDOWN");
+        OC.NotifyObservers(field, "Down");
+        WinCondition(field);
+        if(Win == true){
+            OC.NotifyObservers(field,"Cleared Game" );
+        }
+        /*System.out.println("TestDOWN");
         String temp = "";
         for(int i = 0; i<9; i++){
             for(int j = 0; j<8; j++){
@@ -41,17 +59,25 @@ public class Logic extends Sokoban implements BoardObserver {
             }
             temp += "\n";
         }
-        System.out.println(temp);
+        System.out.println(temp);*/
     }
 
     @Override
     public void LeftPressed(){
+        if(Win){
+            return;
+        }
         Check(GetCharPosX(), GetCharPosY(),0,-1,0,-2);
         /*File[][] Board = GetBoard();
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        System.out.println("TestLEFT");
+        OC.NotifyObservers(field, "Left");
+        WinCondition(field);
+        if(Win == true){
+            OC.NotifyObservers(field,"Cleared Game" );
+        }
+        /*System.out.println("TestLEFT");
         String temp = "";
         for(int i = 0; i<9; i++){
             for(int j = 0; j<8; j++){
@@ -59,11 +85,14 @@ public class Logic extends Sokoban implements BoardObserver {
             }
             temp += "\n";
         }
-        System.out.println(temp);
+        System.out.println(temp);*/
     }
 
     @Override
     public void RightPressed(){
+        if(Win){
+            return;
+        }
         Check(GetCharPosX(), GetCharPosY(),0,1,0,2);
         /*File[][] Board = GetBoard();
         int[][] field = GetField();*/
@@ -85,6 +114,21 @@ public class Logic extends Sokoban implements BoardObserver {
         /*SetPicBoard();
         SetCharPosY(x);
         SetCharPosY(y);*/
+        /*SetBoard(GetStartField());
+        int[][] start = GetStartField();
+        field = GetField();
+        SetCharPosY(getStartY());
+        SetCharPosX(getStartX());
+        String temp = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                temp += start[i][j] + ", ";
+            }
+            temp += "\n";
+        }
+        System.out.println(temp);
+        Board = k.SetPictureBoard(GetField());
+        k.UpdateField(Board);*/
 
         System.out.println("TestRESET");
     }
@@ -507,4 +551,23 @@ public class Logic extends Sokoban implements BoardObserver {
         }
         System.out.println(Board);
         }
+
+        public void WinCondition(int[][] field){
+            int n = 0;
+            for(int i = 0; i<9; i++){
+                for(int j = 0; j<8; j++){
+                    if(field[i][j] == 2){
+                        break;
+                    }
+                    n++;
+                }
+            }
+            if(n == 72){
+                Win = true;
+            }
+        }
+
+        /*public boolean getWinCondition(){
+            return Win;
+        }*/
     }
