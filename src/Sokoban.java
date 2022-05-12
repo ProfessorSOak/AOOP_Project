@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.util.List;
 public abstract class Sokoban extends JFrame{
 
     private int CharXpos;

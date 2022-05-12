@@ -98,6 +98,12 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
+        OC.NotifyObservers(field, "Right");
+        WinCondition(field);
+        if(Win == true){
+            OC.NotifyObservers(field,"Cleared Game" );
+        }
+        /*
         System.out.println("TestRIGHT");
         String temp = "";
         for(int i = 0; i<9; i++){
@@ -106,7 +112,7 @@ public class Logic extends Sokoban implements BoardObserver {
             }
             temp += "\n";
         }
-        System.out.println(temp);
+        System.out.println(temp);*/
     }
 
     @Override
