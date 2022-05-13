@@ -1,12 +1,6 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ObserverCollection implements BoardObserver{
 
-   // int SAMPLING = 500;
     @Override
     public void UpdateBoard(int[][] field, String update) {
 
@@ -20,12 +14,12 @@ public class ObserverCollection implements BoardObserver{
         else {
             System.out.println("Moved: " + update + "\nCurrent Board:");
         }
-        String Board = "";
+        StringBuilder Board = new StringBuilder();
         for(int i = 0; i<9; i++){
             for(int j = 0; j<8; j++){
-                Board += field[i][j] + ", ";
+                Board.append(field[i][j]).append(", ");
             }
-            Board += "\n";
+            Board.append("\n");
         }
         System.out.println(Board);
     }

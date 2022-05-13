@@ -1,3 +1,3 @@
 public interface BoardObserver {
-    public void UpdateBoard(int[][] field, String update);
+    void UpdateBoard(int[][] field, String update);
 }

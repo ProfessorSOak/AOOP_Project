@@ -6,15 +6,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class PictureComponent extends JComponent{
-    private File crate;
-    private File Character;
-    private File MarkedCrate;
-    private File Goal;
-    private File Wall;
-    private File Path;
-    private File Paintit;
-    //int xpos;
-    //int ypos;
+    private final File crate;
+    private final File Character;
+    private final File MarkedCrate;
+    private final File Goal;
+    private final File Wall;
+    private final File Path;
     private File[][] Board;
 
     public PictureComponent(){
@@ -28,19 +25,13 @@ public class PictureComponent extends JComponent{
     }
 
     public void paintComponent(Graphics g){
-        /*if(Paintit == null){
-            return;
-        }*/
         for(int i = 0; i<Board[0].length; i++) {
             for (int j = 0; j < Board.length; j++) {
-                //first = new PictureComponent();
-
-                //k.add(first);
-                Paintit = Board[j][i];
+                File paintit = Board[j][i];
 
                 BufferedImage Image = null;
                 try {
-                    Image = ImageIO.read(Paintit);
+                    Image = ImageIO.read(paintit);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -52,28 +43,6 @@ public class PictureComponent extends JComponent{
     }
 
     public void UpdateField(File[][] Board){
-        //this.xpos = xpos;
-        //this.ypos = ypos;
-        /*this.xpos = xpos;
-        this.ypos = ypos;
-        if(field[ypos][xpos] == 0){
-            Paintit = Wall;
-        }
-         if(field[ypos][xpos] == 1){
-            Paintit = Path;
-        }
-        else if(field[ypos][xpos] == 2){
-            Paintit = crate;
-        }
-        else if(field[ypos][xpos] == 3 || field[ypos][xpos] == 7){
-            Paintit = Character;
-        }
-        else if(field[ypos][xpos] == 4){
-            Paintit = Goal;
-        }
-        else if(field[ypos][xpos] == 6){
-            Paintit = MarkedCrate;
-        }*/
         this.Board = Board;
         repaint();
     }
