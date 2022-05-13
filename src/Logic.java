@@ -5,11 +5,11 @@ import java.io.File;
 
 public class Logic extends Sokoban implements BoardObserver {
     //private PictureComponent first = new PictureComponent();
-    File[][] Board = GetBoard();
-    int[][] field = GetField();
-    Boolean Win = false;
-    PictureComponent k = GetComponent();
-    ObserverCollection OC = new ObserverCollection();
+    private File[][] Board = GetBoard();
+    private int[][] field = GetField();
+    private Boolean Win = false;
+    private PictureComponent k = GetComponent();
+    //private ObserverCollection OC = new ObserverCollection();
 
     @Override
     public void UpPressed() {
@@ -27,10 +27,10 @@ public class Logic extends Sokoban implements BoardObserver {
             }
             temp += "\n";
         }*/
-        OC.NotifyObservers(field, "Up");
+        //OC.NotifyObservers(field, "Up");
         WinCondition(field);
-        if(Win == true){
-            OC.NotifyObservers(field,"Cleared Game" );
+        if(Win){
+            //OC.NotifyObservers(field,"Cleared Game" );
         }
         //System.out.println(temp);
         //System.out.println("TestUP");
@@ -46,10 +46,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        OC.NotifyObservers(field, "Down");
+        //OC.NotifyObservers(field, "Down");
         WinCondition(field);
-        if(Win == true){
-            OC.NotifyObservers(field,"Cleared Game" );
+        if(Win){
+           // OC.NotifyObservers(field,"Cleared Game" );
         }
         /*System.out.println("TestDOWN");
         String temp = "";
@@ -72,10 +72,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        OC.NotifyObservers(field, "Left");
+        //OC.NotifyObservers(field, "Left");
         WinCondition(field);
-        if(Win == true){
-            OC.NotifyObservers(field,"Cleared Game" );
+        if(Win){
+            //OC.NotifyObservers(field,"Cleared Game" );
         }
         /*System.out.println("TestLEFT");
         String temp = "";
@@ -98,10 +98,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        OC.NotifyObservers(field, "Right");
+        //OC.NotifyObservers(field, "Right");
         WinCondition(field);
-        if(Win == true){
-            OC.NotifyObservers(field,"Cleared Game" );
+        if(Win){
+            //OC.NotifyObservers(field,"Cleared Game" );
         }
         /*
         System.out.println("TestRIGHT");
@@ -556,22 +556,22 @@ public class Logic extends Sokoban implements BoardObserver {
             Board += "\n";
         }
         System.out.println(Board);
-        }
+    }
 
-        public void WinCondition(int[][] field){
-            int n = 0;
-            for(int i = 0; i<9; i++){
-                for(int j = 0; j<8; j++){
-                    if(field[i][j] == 2){
-                        break;
-                    }
-                    n++;
+    public void WinCondition(int[][] field){
+        int n = 0;
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                if(field[i][j] == 2){
+                    break;
                 }
-            }
-            if(n == 72){
-                Win = true;
+                n++;
             }
         }
+        if(n == 72){
+            Win = true;
+        }
+    }
 
         /*public boolean getWinCondition(){
             return Win;

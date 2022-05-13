@@ -7,6 +7,8 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.List;
+import java.util.Observer;
+
 public abstract class Sokoban extends JFrame{
 
     private int CharXpos;
@@ -203,9 +205,11 @@ public abstract class Sokoban extends JFrame{
 
     }*/
     public static void main(String[] args) {
-        Sokoban Game = new Logic();
+        Logic test = new Logic();
+        Sokoban Game = test;
         new ControllerStrategy(Game);
-
+        ObserverCollection OC = new ObserverCollection(Game.GetField());
+        OC.addSignalObserver(test);
         /*Logic logic = new Logic();
         ObserverCollection test1 = new ObserverCollection();
         test1.addSignalObserver((field1, update) ->{

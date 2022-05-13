@@ -6,16 +6,16 @@ import java.io.File;
 import java.io.IOException;
 
 public class PictureComponent extends JComponent{
-    File crate;
-    File Character;
-    File MarkedCrate;
-    File Goal;
-    File Wall;
-    File Path;
-    File Paintit;
+    private File crate;
+    private File Character;
+    private File MarkedCrate;
+    private File Goal;
+    private File Wall;
+    private File Path;
+    private File Paintit;
     //int xpos;
     //int ypos;
-    File[][] Board;
+    private File[][] Board;
 
     public PictureComponent(){
         super();

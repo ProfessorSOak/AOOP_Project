@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 
 public class ControllerStrategy implements KeyListener {
 //private Sokoban a;
-    Sokoban m;
+    private Sokoban m;
 
 
     public ControllerStrategy(Sokoban Game){
@@ -26,30 +26,26 @@ public class ControllerStrategy implements KeyListener {
                 System.out.println("RESET");
                 //break;
             }
-            case KeyEvent.VK_UP -> {
-                m.UpPressed();
+            case KeyEvent.VK_UP -> m.UpPressed();
                 //UpdateBoard(PicBoard, k);
                 //System.out.println("UP");
                 //break;
-            }
-            case KeyEvent.VK_DOWN -> {
-                m.DownPressed();
+
+            case KeyEvent.VK_DOWN -> m.DownPressed();
                 //UpdateBoard(PicBoard, k);
                 //System.out.println("DOWN");
                 //break;
-            }
-            case KeyEvent.VK_LEFT -> {
-                m.LeftPressed();
+
+            case KeyEvent.VK_LEFT -> m.LeftPressed();
                 //UpdateBoard(PicBoard, k);
                 //System.out.println("LEFT");
                 //break;
-            }
-            case KeyEvent.VK_RIGHT -> {
-                m.RightPressed();
+
+            case KeyEvent.VK_RIGHT -> m.RightPressed();
                 //UpdateBoard(PicBoard, k);
                 //System.out.println("RIGHT");
                 //break;
-            }
+
         }
     }
 
