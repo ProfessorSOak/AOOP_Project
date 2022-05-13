@@ -2,14 +2,23 @@
 //import java.io.File;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Logic extends Sokoban implements BoardObserver {
+public class Logic extends Sokoban {
     //private PictureComponent first = new PictureComponent();
     private File[][] Board = GetBoard();
     private int[][] field = GetField();
     private Boolean Win = false;
     private PictureComponent k = GetComponent();
+    private List<BoardObserver> observers = new ArrayList<BoardObserver>();
     //private ObserverCollection OC = new ObserverCollection();
+
+
+    public Logic(){
+        observers.add(new ObserverCollection());
+    }
+
 
     @Override
     public void UpPressed() {
@@ -27,10 +36,10 @@ public class Logic extends Sokoban implements BoardObserver {
             }
             temp += "\n";
         }*/
-        //OC.NotifyObservers(field, "Up");
+        NotifyObservers(field, "Up");
         WinCondition(field);
         if(Win){
-            //OC.NotifyObservers(field,"Cleared Game" );
+            NotifyObservers(field,"Cleared Game" );
         }
         //System.out.println(temp);
         //System.out.println("TestUP");
@@ -46,10 +55,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        //OC.NotifyObservers(field, "Down");
+        NotifyObservers(field, "Down");
         WinCondition(field);
         if(Win){
-           // OC.NotifyObservers(field,"Cleared Game" );
+           NotifyObservers(field,"Cleared Game" );
         }
         /*System.out.println("TestDOWN");
         String temp = "";
@@ -72,10 +81,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        //OC.NotifyObservers(field, "Left");
+        NotifyObservers(field, "Left");
         WinCondition(field);
         if(Win){
-            //OC.NotifyObservers(field,"Cleared Game" );
+            NotifyObservers(field,"Cleared Game" );
         }
         /*System.out.println("TestLEFT");
         String temp = "";
@@ -98,10 +107,10 @@ public class Logic extends Sokoban implements BoardObserver {
         int[][] field = GetField();*/
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);
-        //OC.NotifyObservers(field, "Right");
+        NotifyObservers(field, "Right");
         WinCondition(field);
         if(Win){
-            //OC.NotifyObservers(field,"Cleared Game" );
+            NotifyObservers(field,"Cleared Game" );
         }
         /*
         System.out.println("TestRIGHT");
@@ -137,6 +146,10 @@ public class Logic extends Sokoban implements BoardObserver {
         k.UpdateField(Board);*/
 
         System.out.println("TestRESET");
+    }
+
+    public void addBoardObserver(BoardObserver BO){
+        observers.add(BO);
     }
 
     /*@Override
@@ -540,23 +553,7 @@ public class Logic extends Sokoban implements BoardObserver {
         }
     }
 
-    @Override
-    public void UpdateBoard(int[][] field, String update) {
-        if(update.equals("Cleared Game")){
-            System.out.println(update + "\nFinal Board:");
-        }
-        else {
-            System.out.println("Moved: " + update + "\nCurrent Board");
-        }
-        String Board = "";
-        for(int i = 0; i<9; i++){
-            for(int j = 0; j<8; j++){
-                Board += field[i][j] + ", ";
-            }
-            Board += "\n";
-        }
-        System.out.println(Board);
-    }
+
 
     public void WinCondition(int[][] field){
         int n = 0;
@@ -568,8 +565,13 @@ public class Logic extends Sokoban implements BoardObserver {
                 n++;
             }
         }
-        if(n == 72){
+        if(n == field.length*field[0].length ){
             Win = true;
+        }
+    }
+    public void NotifyObservers(int[][] field, String update){
+        for(BoardObserver BO : observers){
+            BO.UpdateBoard(field, update);
         }
     }
 

@@ -4,32 +4,24 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObserverCollection {
+public class ObserverCollection implements BoardObserver{
 
-    int SAMPLING = 500;
-    private List<BoardObserver> observers = new ArrayList<BoardObserver>();
-
-    public ObserverCollection(int[][] field) {
-        javax.swing.Timer t = new Timer(SAMPLING, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //double amplitude = Math.random() * 10;
-                // notify all observers with amplitude
-                NotifyObservers(field, "hej");
-                /*Council.append("" + String.format("%.6f", amplitude) + "\n");
-                printStars((int) amplitude);*/
-            }
-        });
-        t.start();
-    }
-
-    public void addSignalObserver(BoardObserver BO){
-        observers.add(BO);
-    }
-
-    public void NotifyObservers(int[][] field, String update){
-        for(BoardObserver BO : observers){
-            BO.UpdateBoard(field, update);
+   // int SAMPLING = 500;
+    @Override
+    public void UpdateBoard(int[][] field, String update) {
+        if(update.equals("Cleared Game")){
+            System.out.println(update + "\nFinal Board:");
         }
+        else {
+            System.out.println("Moved: " + update + "\nCurrent Board:");
+        }
+        String Board = "";
+        for(int i = 0; i<9; i++){
+            for(int j = 0; j<8; j++){
+                Board += field[i][j] + ", ";
+            }
+            Board += "\n";
+        }
+        System.out.println(Board);
     }
-
 }

@@ -208,8 +208,6 @@ public abstract class Sokoban extends JFrame{
         Logic test = new Logic();
         Sokoban Game = test;
         new ControllerStrategy(Game);
-        ObserverCollection OC = new ObserverCollection(Game.GetField());
-        OC.addSignalObserver(test);
         /*Logic logic = new Logic();
         ObserverCollection test1 = new ObserverCollection();
         test1.addSignalObserver((field1, update) ->{
