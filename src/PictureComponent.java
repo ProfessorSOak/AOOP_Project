@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class PictureComponent extends JComponent{
+
+    //variables for the different pictures used along with the array of the picture field
     private final File crate;
     private final File Character;
     private final File MarkedCrate;
@@ -14,7 +16,7 @@ public class PictureComponent extends JComponent{
     private final File Path;
     private File[][] Board;
 
-    public PictureComponent(){
+    public PictureComponent(){//links specified pictures to each variable
         super();
         crate = new File("C:\\Users\\hugos\\IdeaProjects\\AOOP_Project\\src\\crate.png");
         MarkedCrate = new File("C:\\Users\\hugos\\IdeaProjects\\AOOP_Project\\src\\cratemarked.png");
@@ -24,8 +26,8 @@ public class PictureComponent extends JComponent{
         Path = new File("C:\\Users\\hugos\\IdeaProjects\\AOOP_Project\\src\\blank.png");
     }
 
-    public void paintComponent(Graphics g){
-        for(int i = 0; i<Board[0].length; i++) {
+    public void paintComponent(Graphics g){ //the paint component function for repainting the component on the frame
+        for(int i = 0; i<Board[0].length; i++) {//double for loop used to make sure every picture in the array is added to the repaint
             for (int j = 0; j < Board.length; j++) {
                 File paintit = Board[j][i];
 
@@ -42,12 +44,12 @@ public class PictureComponent extends JComponent{
         }
     }
 
-    public void UpdateField(File[][] Board){
+    public void UpdateField(File[][] Board){ //the function that handles repainting as well as updating the board
         this.Board = Board;
         repaint();
     }
 
-    public File[][] SetPictureBoard(int[][] field){
+    public File[][] SetPictureBoard(int[][] field){ //this function updates the board component by adding pictures based on the fields values
         File[][] ret = new File[field.length][field[0].length];
         for(int i = 0; i<field.length; i++){
             for(int j = 0; j<field[0].length;j++){

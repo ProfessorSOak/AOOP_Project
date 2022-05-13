@@ -4,17 +4,18 @@ import javax.swing.*;
 
 public abstract class Sokoban extends JFrame{
 
-    private int CharXpos;
-    private int CharYpos;
-    private int[][] field;
-    private int[][] Start;
-    private int CharStartX;
-    private int CharStartY;
-    private File[][] PicBoard;
-    private final PictureComponent k = new PictureComponent();
-    private final JFrame frame = new JFrame();
+    //specific variables passed in between the functions
+    private int CharXpos;  //players current row position
+    private int CharYpos;  //players current column position
+    private int[][] field; //playing field written in numbers
+    private int[][] Start; //the same field to be used for reset
+    private int CharStartX; //players start row
+    private int CharStartY; //players start column
+    private File[][] PicBoard; //the playing field but filled with the specified pictures for each position
+    private final PictureComponent k = new PictureComponent(); //main component where playing field is painted
+    private final JFrame frame = new JFrame(); //the frame
 
-
+    //abstract functions used in the logic class
     public abstract void UpPressed();
     public abstract void DownPressed();
     public abstract void LeftPressed();
@@ -26,6 +27,8 @@ public abstract class Sokoban extends JFrame{
 
     }
 
+
+    //setters ang getters for the different variables
     public void SetCharPosX(int pos){
         CharXpos = pos;
     }
@@ -73,7 +76,7 @@ public abstract class Sokoban extends JFrame{
         return CharStartY;
     }
 
-    public int[][] GetStartField(){
+    public int[][] GetStartField(){ //these two methods below are used to create and pass the start array for the reset
         int[][] SetStart = new int[Start.length][Start[0].length];
         for(int i = 0; i < Start.length; i++){
             System.arraycopy(Start[i], 0, SetStart[i], 0, Start[0].length);
@@ -89,13 +92,13 @@ public abstract class Sokoban extends JFrame{
         return CreateStart;
     }
 
-    public void Level1(){
+    public void Level1(){ //main function for creating the game
         frame.setPreferredSize(new Dimension(500, 500));
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        int[][] field = new int[][]{
+        int[][] field = new int[][]{ //the playing field in numeric values
                 {0,0,0,0,0,0,0,0},
                 {0,0,0,1,1,1,0,0},
                 {0,4,3,2,1,1,0,0},
@@ -107,12 +110,15 @@ public abstract class Sokoban extends JFrame{
                 {0,0,0,0,0,0,0,0}};
         this.field = field;
         Start = CreateStart();
+
         PicBoard = k.SetPictureBoard(field);
+
         CharXpos = 2;
         CharYpos = 2;
         CharStartX = CharXpos;
         CharStartY = CharYpos;
-        k.UpdateField(PicBoard);
+
+        k.UpdateField(PicBoard); //our repaint function
 
         frame.add(k,BorderLayout.CENTER);
         frame.pack();
@@ -121,7 +127,7 @@ public abstract class Sokoban extends JFrame{
     }
 
     public static void main(String[] args) {
-        Sokoban Game = new Logic();
-        new ControllerStrategy(Game);
+        Sokoban Game = new Logic(); //create the game based on the game logic
+        new ControllerStrategy(Game); // link the controller to the game
     }
 }
