@@ -9,7 +9,12 @@ public class ObserverCollection implements BoardObserver{
    // int SAMPLING = 500;
     @Override
     public void UpdateBoard(int[][] field, String update) {
-        if(update.equals("Cleared Game")){
+
+        if(update.equals("Reset")){
+            System.out.println("Game " + update + "\nCurrent Board:");
+        }
+
+        else if(update.equals("Cleared Game")){
             System.out.println(update + "\nFinal Board:");
         }
         else {

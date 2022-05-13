@@ -60,10 +60,9 @@ public abstract class Sokoban extends JFrame{
         field = Board;
     }
 
-    /*public void SetPicBoard(){
-        PicBoard = k.SetPictureBoard(Start);
-        k.UpdateField(PicBoard);
-    }*/
+    public void SetPicBoard(File[][] Board){
+        PicBoard = Board;
+    }
 
     /*public JPanel GetPanel(){
         return k;
@@ -94,7 +93,23 @@ public abstract class Sokoban extends JFrame{
     }
 
     public int[][] GetStartField(){
-        return Start;
+        int[][] SetStart = new int[Start.length][Start[0].length];
+        for(int i = 0; i < Start.length; i++){
+            for( int j = 0; j < Start[0].length; j++){
+                SetStart[i][j] = Start[i][j];
+            }
+        }
+        return SetStart;
+    }
+
+    public int[][] CreateStart(){
+        int[][] CreateStart = new int[field.length][field[0].length];
+        for(int i = 0; i < field.length; i++){
+            for( int j = 0; j < field[0].length; j++){
+                CreateStart[i][j] = field[i][j];
+            }
+        }
+        return CreateStart;
     }
 
     public void Level1(){
@@ -121,7 +136,7 @@ public abstract class Sokoban extends JFrame{
         //int tester[][] = {{4, 2}};
         this.field = field;
         //JComponent Painter = createMainComponent();
-        Start = field;
+        Start = CreateStart();
         PicBoard = k.SetPictureBoard(field);
         //Crates Value = 2;
         //goals value = 4

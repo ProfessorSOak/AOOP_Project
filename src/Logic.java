@@ -126,6 +126,21 @@ public class Logic extends Sokoban {
 
     @Override
     public void ResetPressed(){
+
+
+        SetCharPosX(getStartX());
+        SetCharPosY(getStartY());
+        SetBoard(GetStartField());
+        SetPicBoard(k.SetPictureBoard(GetField()));
+        Board = GetBoard();
+        field = GetField();
+        k.UpdateField(Board);
+        Win = false;
+        NotifyObservers(field, "Reset");
+
+
+
+
         /*SetPicBoard();
         SetCharPosY(x);
         SetCharPosY(y);*/
@@ -145,7 +160,7 @@ public class Logic extends Sokoban {
         Board = k.SetPictureBoard(GetField());
         k.UpdateField(Board);*/
 
-        System.out.println("TestRESET");
+        //System.out.println("TestRESET");
     }
 
     public void addBoardObserver(BoardObserver BO){
@@ -560,6 +575,7 @@ public class Logic extends Sokoban {
         for(int i = 0; i<9; i++){
             for(int j = 0; j<8; j++){
                 if(field[i][j] == 2){
+                    //System.out.println("hej");
                     break;
                 }
                 n++;

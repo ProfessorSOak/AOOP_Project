@@ -1,6 +1,7 @@
 //import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 public class ControllerStrategy implements KeyListener {
 //private Sokoban a;
@@ -23,7 +24,7 @@ public class ControllerStrategy implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE-> {
                 m.ResetPressed();
-                System.out.println("RESET");
+                //System.out.println("RESET");
                 //break;
             }
             case KeyEvent.VK_UP -> m.UpPressed();
