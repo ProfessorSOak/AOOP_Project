@@ -15,8 +15,8 @@ public class ObserverCollection implements BoardObserver{
                     System.out.println("Moved: " + update + "\nCurrent Board:");
         }
         StringBuilder Board = new StringBuilder();//makes a string of the field to print out how the game looks in a text based fashion
-        for(int i = 0; i<9; i++){
-            for(int j = 0; j<8; j++){
+        for(int i = 0; i< field.length; i++){
+            for(int j = 0; j<field[0].length; j++){
                 Board.append(field[i][j]).append(", ");
             }
             Board.append("\n");
