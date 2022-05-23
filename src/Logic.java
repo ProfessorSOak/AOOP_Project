@@ -1,12 +1,10 @@
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Logic extends Sokoban {
-    private File[][] Board = GetBoard(); // exact copies of the two array from sokoban to give access to changes
+    //private File[][] Board = GetBoard(); // exact copies of the two array from sokoban to give access to changes
     private int[][] field = GetField();
     private Boolean Win = false; //win value for when the win condition has been reached
-    private final PictureComponent k = GetComponent(); //a component linked to the one in the frame
     private final List<BoardObserver> observers = new ArrayList<>(); //observer array
 
 
@@ -24,9 +22,7 @@ public class Logic extends Sokoban {
         }
         Check(GetCharPosX(), GetCharPosY(), -1, 0, -2, 0); //function for checking the next location and updating field accordingly
 
-        Board = k.SetPictureBoard(GetField()); //updates board to match field
-        //k.UpdateField(Board); //repaints component
-        NotifyObservers(field, "Up", Board); //notify observer of the new change
+        NotifyObservers(field, "Up"); //notify observer of the new change
         WinCondition(field); //check if win condition is reached
         if (Win) { //if it is reached then tell the observer about the game being cleared
             NotifyObservers(field, "Cleared Game", Board);
@@ -39,9 +35,7 @@ public class Logic extends Sokoban {
             return;
         }
         Check(GetCharPosX(), GetCharPosY(), 1, 0, 2, 0);
-        Board = k.SetPictureBoard(GetField());
-        //k.UpdateField(Board);
-        NotifyObservers(field, "Down", Board);
+        NotifyObservers(field, "Down");
         WinCondition(field);
         if (Win) {
             NotifyObservers(field, "Cleared Game", Board);
@@ -85,12 +79,8 @@ public class Logic extends Sokoban {
         SetCharPosY(getStartY());
 
         SetBoard(GetStartField());//does the same with the field and board values
-        SetPicBoard(k.SetPictureBoard(GetField()));
-
-        Board = GetBoard(); //updates the local field and board values to match the ones above
         field = GetField();
 
-        ///k.UpdateField(Board); //repaint
         Win = false; //reset win condition
         NotifyObservers(field, "Reset", Board); //notify observer of the reset
     }
@@ -185,9 +175,9 @@ public class Logic extends Sokoban {
         }
     }
 
-    public void NotifyObservers(int[][] field, String update, File[][] Board) {//method to check and update all observers
+    public void NotifyObservers(int[][] field, String update) {//method to check and update all observers
         for (BoardObserver BO : observers) {
-            BO.UpdateBoard(field, update,Board );
+            BO.UpdateBoard(field, update);
         }
     }
 }

@@ -1,5 +1,3 @@
-import java.io.File;
-
 public interface BoardObserver {
-    void UpdateBoard(int[][] field, String update, File[][] Board);//observer interface
+    void UpdateBoard(int[][] field, String update);//observer interface
 }

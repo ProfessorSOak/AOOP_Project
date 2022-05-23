@@ -72,8 +72,8 @@ public class PictureComponent extends JComponent implements BoardObserver{
     }
 
     @Override
-    public void UpdateBoard(int[][] field, String update, File[][] Board) {
-        this.Board = Board;
+    public void UpdateBoard(int[][] field, String update) {
+        Board = SetPictureBoard(field);
         repaint();
     }
 }

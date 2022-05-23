@@ -1,6 +1,5 @@
-import java.awt.*;
-import java.io.File;
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class Sokoban extends JFrame{
 
@@ -11,7 +10,6 @@ public abstract class Sokoban extends JFrame{
     private int[][] Start; //the same field to be used for reset
     private int CharStartX; //players start row
     private int CharStartY; //players start column
-    private File[][] PicBoard; //the playing field but filled with the specified pictures for each position
     private static final PictureComponent k = new PictureComponent(); //main component where playing field is painted
     private final JFrame frame = new JFrame(); //the frame
 
@@ -49,28 +47,12 @@ public abstract class Sokoban extends JFrame{
         field = Board;
     }
 
-    public void SetPicBoard(File[][] Board){
-        PicBoard = Board;
-    }
-
     public int[][] GetField(){
         int[][] Field = new int[field.length][field[0].length];
         for(int i = 0; i < field.length; i++){
             System.arraycopy(field[i], 0, Field[i], 0, field[0].length);
         }
         return field;
-    }
-
-    public File[][] GetBoard(){
-        File[][] RetBoard = new File[PicBoard.length][PicBoard[0].length];
-        for(int i = 0; i < PicBoard.length; i++){
-            System.arraycopy(PicBoard[i], 0, RetBoard[i], 0, PicBoard[0].length);
-        }
-        return RetBoard;
-    }
-
-    public PictureComponent GetComponent() {
-        return k;
     }
 
     public JFrame getFrame(){
@@ -107,7 +89,7 @@ public abstract class Sokoban extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        int[][] field = new int[][]{ //the playing field in numeric values
+        this.field = new int[][]{ //the playing field in numeric values
                 {0,0,0,0,0,0,0,0},
                 {0,0,0,1,1,1,0,0},
                 {0,4,3,2,1,1,0,0},
@@ -117,10 +99,9 @@ public abstract class Sokoban extends JFrame{
                 {0,2,1,6,2,2,4,0},
                 {0,1,1,1,4,1,1,0},
                 {0,0,0,0,0,0,0,0}};
-        this.field = field;
         Start = CreateStart();
 
-        PicBoard = k.SetPictureBoard(field);
+        //the playing field but filled with the specified pictures for each position
 
         CharXpos = 2;
         CharYpos = 2;
@@ -136,7 +117,7 @@ public abstract class Sokoban extends JFrame{
     public static void main(String[] args) {
         Logic Logico = new Logic();
         Logico.addObserver(k);
-        Logico.NotifyObservers(Logico.GetField(), "Game Started", Logico.GetBoard());
+        Logico.NotifyObservers(Logico.GetField(), "Game Started");
         new ControllerStrategy(Logico); // link the controller to the game
     }
 }

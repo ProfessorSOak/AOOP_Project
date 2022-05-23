@@ -1,9 +1,7 @@
-import java.io.File;
-
 public class ObserverCollection implements BoardObserver{
 
     @Override
-    public void UpdateBoard(int[][] field, String update, File[][] FileBoard) {//method for when we update an observer
+    public void UpdateBoard(int[][] field, String update) {//method for when we update an observer
 
         switch (update) {
             case "Game Started" -> System.out.println(update + "\nCurrent Board:");
@@ -15,9 +13,9 @@ public class ObserverCollection implements BoardObserver{
                     System.out.println("Moved: " + update + "\nCurrent Board:");
         }
         StringBuilder Board = new StringBuilder();//makes a string of the field to print out how the game looks in a text based fashion
-        for(int i = 0; i< field.length; i++){
-            for(int j = 0; j<field[0].length; j++){
-                Board.append(field[i][j]).append(", ");
+        for (int[] ints : field) {
+            for (int j = 0; j < field[0].length; j++) {
+                Board.append(ints[j]).append(", ");
             }
             Board.append("\n");
         }
