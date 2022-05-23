@@ -15,13 +15,13 @@ public class Logic extends Sokoban {
     public void addObserver(BoardObserver OB){
         observers.add(OB);
     }
+
     @Override
     public void UpPressed() { //function for moving the player up on the field
         if (Win) { //if the win condition has been reached then the function will not run. (same for all directions)
             return;
         }
         Check(GetCharPosX(), GetCharPosY(), -1, 0, -2, 0); //function for checking the next location and updating field accordingly
-
         NotifyObservers(field, "Up"); //notify observer of the new change
         WinCondition(field); //check if win condition is reached
         if (Win) { //if it is reached then tell the observer about the game being cleared
