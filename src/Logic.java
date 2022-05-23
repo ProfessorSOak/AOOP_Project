@@ -25,7 +25,7 @@ public class Logic extends Sokoban {
         NotifyObservers(field, "Up"); //notify observer of the new change
         WinCondition(field); //check if win condition is reached
         if (Win) { //if it is reached then tell the observer about the game being cleared
-            NotifyObservers(field, "Cleared Game", Board);
+            NotifyObservers(field, "Cleared Game");
         }
     }
 
@@ -38,7 +38,7 @@ public class Logic extends Sokoban {
         NotifyObservers(field, "Down");
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game", Board);
+            NotifyObservers(field, "Cleared Game");
         }
     }
 
@@ -48,12 +48,10 @@ public class Logic extends Sokoban {
             return;
         }
         Check(GetCharPosX(), GetCharPosY(), 0, -1, 0, -2);
-        Board = k.SetPictureBoard(GetField());
-        //k.UpdateField(Board);
-        NotifyObservers(field, "Left", Board);
+        NotifyObservers(field, "Left");
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game", Board);
+            NotifyObservers(field, "Cleared Game");
         }
     }
 
@@ -63,12 +61,10 @@ public class Logic extends Sokoban {
             return;
         }
         Check(GetCharPosX(), GetCharPosY(), 0, 1, 0, 2);
-        Board = k.SetPictureBoard(GetField());
-        //k.UpdateField(Board);
-        NotifyObservers(field, "Right", Board);
+        NotifyObservers(field, "Right");
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game", Board);
+            NotifyObservers(field, "Cleared Game");
         }
     }
 
@@ -77,12 +73,11 @@ public class Logic extends Sokoban {
 
         SetCharPosX(getStartX()); //update player placement with original values
         SetCharPosY(getStartY());
-
         SetBoard(GetStartField());//does the same with the field and board values
         field = GetField();
 
         Win = false; //reset win condition
-        NotifyObservers(field, "Reset", Board); //notify observer of the reset
+        NotifyObservers(field, "Reset"); //notify observer of the reset
     }
 
     public void Check(int checkX, int checkY, int x1, int y1, int x2, int y2) {
