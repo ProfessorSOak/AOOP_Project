@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class PictureComponent extends JComponent{
+public class PictureComponent extends JComponent implements BoardObserver{
 
     //variables for the different pictures used along with the array of the picture field
     private final File crate;
@@ -44,11 +44,6 @@ public class PictureComponent extends JComponent{
         }
     }
 
-    public void UpdateField(File[][] Board){ //the function that handles repainting as well as updating the board
-        this.Board = Board;
-        repaint();
-    }
-
     public File[][] SetPictureBoard(int[][] field){ //this function updates the board component by adding pictures based on the fields values
         File[][] ret = new File[field.length][field[0].length];
         for(int i = 0; i<field.length; i++){
@@ -74,5 +69,11 @@ public class PictureComponent extends JComponent{
             }
         }
         return ret;
+    }
+
+    @Override
+    public void UpdateBoard(int[][] field, String update, File[][] Board) {
+        this.Board = Board;
+        repaint();
     }
 }

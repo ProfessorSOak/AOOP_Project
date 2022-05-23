@@ -12,7 +12,7 @@ public abstract class Sokoban extends JFrame{
     private int CharStartX; //players start row
     private int CharStartY; //players start column
     private File[][] PicBoard; //the playing field but filled with the specified pictures for each position
-    private final PictureComponent k = new PictureComponent(); //main component where playing field is painted
+    private static final PictureComponent k = new PictureComponent(); //main component where playing field is painted
     private final JFrame frame = new JFrame(); //the frame
 
     //abstract functions used in the logic class
@@ -52,12 +52,21 @@ public abstract class Sokoban extends JFrame{
     public void SetPicBoard(File[][] Board){
         PicBoard = Board;
     }
+
     public int[][] GetField(){
+        int[][] Field = new int[field.length][field[0].length];
+        for(int i = 0; i < field.length; i++){
+            System.arraycopy(field[i], 0, Field[i], 0, field[0].length);
+        }
         return field;
     }
 
     public File[][] GetBoard(){
-        return PicBoard;
+        File[][] RetBoard = new File[PicBoard.length][PicBoard[0].length];
+        for(int i = 0; i < PicBoard.length; i++){
+            System.arraycopy(PicBoard[i], 0, RetBoard[i], 0, PicBoard[0].length);
+        }
+        return RetBoard;
     }
 
     public PictureComponent GetComponent() {
@@ -118,8 +127,6 @@ public abstract class Sokoban extends JFrame{
         CharStartX = CharXpos;
         CharStartY = CharYpos;
 
-        k.UpdateField(PicBoard); //our repaint function
-
         frame.add(k,BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
@@ -127,7 +134,9 @@ public abstract class Sokoban extends JFrame{
     }
 
     public static void main(String[] args) {
-        Sokoban Game = new Logic(); //create the game based on the game logic
-        new ControllerStrategy(Game); // link the controller to the game
+        Logic Logico = new Logic();
+        Logico.addObserver(k);
+        Logico.NotifyObservers(Logico.GetField(), "Game Started", Logico.GetBoard());
+        new ControllerStrategy(Logico); // link the controller to the game
     }
 }

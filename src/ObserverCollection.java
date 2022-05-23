@@ -1,10 +1,15 @@
+import java.io.File;
 
 public class ObserverCollection implements BoardObserver{
 
     @Override
-    public void UpdateBoard(int[][] field, String update) {//method for when we update an observer
+    public void UpdateBoard(int[][] field, String update, File[][] FileBoard) {//method for when we update an observer
 
-        if(update.equals("Reset")){// checks if the board was reset
+        if(update.equals("Game Started")){
+            System.out.println(update + "\nCurrent Board:");
+        }
+
+        else if(update.equals("Reset")){// checks if the board was reset
             System.out.println("Game " + update + "\nCurrent Board:");
         }
 

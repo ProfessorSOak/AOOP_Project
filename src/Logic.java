@@ -11,10 +11,12 @@ public class Logic extends Sokoban {
 
 
     public Logic() { //adds the text based observer to the observer array
-        observers.add(new ObserverCollection());
+        addObserver(new ObserverCollection());
     }
 
-
+    public void addObserver(BoardObserver OB){
+        observers.add(OB);
+    }
     @Override
     public void UpPressed() { //function for moving the player up on the field
         if (Win) { //if the win condition has been reached then the function will not run. (same for all directions)
@@ -23,11 +25,11 @@ public class Logic extends Sokoban {
         Check(GetCharPosX(), GetCharPosY(), -1, 0, -2, 0); //function for checking the next location and updating field accordingly
 
         Board = k.SetPictureBoard(GetField()); //updates board to match field
-        k.UpdateField(Board); //repaints component
-        NotifyObservers(field, "Up"); //notify observer of the new change
+        //k.UpdateField(Board); //repaints component
+        NotifyObservers(field, "Up", Board); //notify observer of the new change
         WinCondition(field); //check if win condition is reached
         if (Win) { //if it is reached then tell the observer about the game being cleared
-            NotifyObservers(field, "Cleared Game");
+            NotifyObservers(field, "Cleared Game", Board);
         }
     }
 
@@ -38,11 +40,11 @@ public class Logic extends Sokoban {
         }
         Check(GetCharPosX(), GetCharPosY(), 1, 0, 2, 0);
         Board = k.SetPictureBoard(GetField());
-        k.UpdateField(Board);
-        NotifyObservers(field, "Down");
+        //k.UpdateField(Board);
+        NotifyObservers(field, "Down", Board);
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game");
+            NotifyObservers(field, "Cleared Game", Board);
         }
     }
 
@@ -53,11 +55,11 @@ public class Logic extends Sokoban {
         }
         Check(GetCharPosX(), GetCharPosY(), 0, -1, 0, -2);
         Board = k.SetPictureBoard(GetField());
-        k.UpdateField(Board);
-        NotifyObservers(field, "Left");
+        //k.UpdateField(Board);
+        NotifyObservers(field, "Left", Board);
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game");
+            NotifyObservers(field, "Cleared Game", Board);
         }
     }
 
@@ -68,11 +70,11 @@ public class Logic extends Sokoban {
         }
         Check(GetCharPosX(), GetCharPosY(), 0, 1, 0, 2);
         Board = k.SetPictureBoard(GetField());
-        k.UpdateField(Board);
-        NotifyObservers(field, "Right");
+        //k.UpdateField(Board);
+        NotifyObservers(field, "Right", Board);
         WinCondition(field);
         if (Win) {
-            NotifyObservers(field, "Cleared Game");
+            NotifyObservers(field, "Cleared Game", Board);
         }
     }
 
@@ -88,9 +90,9 @@ public class Logic extends Sokoban {
         Board = GetBoard(); //updates the local field and board values to match the ones above
         field = GetField();
 
-        k.UpdateField(Board); //repaint
+        ///k.UpdateField(Board); //repaint
         Win = false; //reset win condition
-        NotifyObservers(field, "Reset"); //notify observer of the reset
+        NotifyObservers(field, "Reset", Board); //notify observer of the reset
     }
 
     public void Check(int checkX, int checkY, int x1, int y1, int x2, int y2) {
@@ -183,9 +185,9 @@ public class Logic extends Sokoban {
         }
     }
 
-    public void NotifyObservers(int[][] field, String update) {//method to check and update all observers
+    public void NotifyObservers(int[][] field, String update, File[][] Board) {//method to check and update all observers
         for (BoardObserver BO : observers) {
-            BO.UpdateBoard(field, update);
+            BO.UpdateBoard(field, update,Board );
         }
     }
 }
